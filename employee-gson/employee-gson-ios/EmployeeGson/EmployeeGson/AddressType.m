@@ -13,7 +13,7 @@ __attribute__((unused)) static void EmpAddressType_initWithNSString_withInt_(Emp
 
 __attribute__((unused)) static EmpAddressType *new_EmpAddressType_initWithNSString_withInt_(NSString *__name, jint __ordinal) NS_RETURNS_RETAINED;
 
-#line 1 "/Users/ahmedmohammed/intelliJWorkspace/employee-gson/src/main/java/com/employee/model/AddressType.java"
+#line 1 "/Users/ahmedmohammed/intelliJWorkspace/EmployeeGson/employee-gson/src/main/java/com/employee/model/AddressType.java"
 
 J2OBJC_INITIALIZED_DEFN(EmpAddressType)
 

@@ -36,7 +36,7 @@
 J2OBJC_FIELD_SETTER(GsonJsonStreamParser, parser_, GsonJsonReader *)
 J2OBJC_FIELD_SETTER(GsonJsonStreamParser, lock_, id)
 
-#line 1 "/Users/ahmedmohammed/intelliJWorkspace/employee-gson/src/main/java/com/google/gson/JsonStreamParser.java"
+#line 1 "/Users/ahmedmohammed/intelliJWorkspace/EmployeeGson/employee-gson/src/main/java/com/google/gson/JsonStreamParser.java"
 
 
 #line 52

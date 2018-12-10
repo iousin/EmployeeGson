@@ -8,7 +8,7 @@
 #include "java/lang/RuntimeException.h"
 #include "java/lang/Throwable.h"
 
-#line 1 "/Users/ahmedmohammed/intelliJWorkspace/employee-gson/src/main/java/com/google/gson/JsonParseException.java"
+#line 1 "/Users/ahmedmohammed/intelliJWorkspace/EmployeeGson/employee-gson/src/main/java/com/google/gson/JsonParseException.java"
 
 
 #line 32

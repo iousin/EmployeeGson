@@ -20,7 +20,7 @@
 #include "java/util/List.h"
 #include "java/util/Map.h"
 
-#line 1 "/Users/ahmedmohammed/intelliJWorkspace/employee-gson/src/main/java/com/employee/gson/EmployeeGsonExample.java"
+#line 1 "/Users/ahmedmohammed/intelliJWorkspace/EmployeeGson/employee-gson/src/main/java/com/employee/gson/EmployeeGsonExample.java"
 
 J2OBJC_INITIALIZED_DEFN(EmpEmployeeGsonExample)
 

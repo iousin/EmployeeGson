@@ -18,7 +18,7 @@
 J2OBJC_FIELD_SETTER(EmpAddressHolder, min_, EmpAddress *)
 J2OBJC_FIELD_SETTER(EmpAddressHolder, max_, EmpAddress *)
 
-#line 1 "/Users/ahmedmohammed/intelliJWorkspace/employee-gson/src/main/java/com/employee/model/AddressHolder.java"
+#line 1 "/Users/ahmedmohammed/intelliJWorkspace/EmployeeGson/employee-gson/src/main/java/com/employee/model/AddressHolder.java"
 
 
 #line 3

@@ -12,7 +12,7 @@ inline jlong GsonMalformedJsonException_get_serialVersionUID(void);
 #define GsonMalformedJsonException_serialVersionUID 1LL
 J2OBJC_STATIC_FIELD_CONSTANT(GsonMalformedJsonException, serialVersionUID, jlong)
 
-#line 1 "/Users/ahmedmohammed/intelliJWorkspace/employee-gson/src/main/java/com/google/gson/stream/MalformedJsonException.java"
+#line 1 "/Users/ahmedmohammed/intelliJWorkspace/EmployeeGson/employee-gson/src/main/java/com/google/gson/stream/MalformedJsonException.java"
 
 
 #line 25

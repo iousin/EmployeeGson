@@ -18,7 +18,7 @@
 
 J2OBJC_FIELD_SETTER(EmpBusinessAddress, businessAddressField_, NSString *)
 
-#line 1 "/Users/ahmedmohammed/intelliJWorkspace/employee-gson/src/main/java/com/employee/model/BusinessAddress.java"
+#line 1 "/Users/ahmedmohammed/intelliJWorkspace/EmployeeGson/employee-gson/src/main/java/com/employee/model/BusinessAddress.java"
 
 
 #line 3

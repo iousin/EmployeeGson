@@ -12,7 +12,7 @@ inline jlong GsonJsonSyntaxException_get_serialVersionUID(void);
 #define GsonJsonSyntaxException_serialVersionUID 1LL
 J2OBJC_STATIC_FIELD_CONSTANT(GsonJsonSyntaxException, serialVersionUID, jlong)
 
-#line 1 "/Users/ahmedmohammed/intelliJWorkspace/employee-gson/src/main/java/com/google/gson/JsonSyntaxException.java"
+#line 1 "/Users/ahmedmohammed/intelliJWorkspace/EmployeeGson/employee-gson/src/main/java/com/google/gson/JsonSyntaxException.java"
 
 
 #line 25

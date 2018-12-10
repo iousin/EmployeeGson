@@ -20,7 +20,7 @@ J2OBJC_FIELD_SETTER(EmpAddress, street_, NSString *)
 J2OBJC_FIELD_SETTER(EmpAddress, city_, NSString *)
 J2OBJC_FIELD_SETTER(EmpAddress, freeText_, id)
 
-#line 1 "/Users/ahmedmohammed/intelliJWorkspace/employee-gson/src/main/java/com/employee/model/Address.java"
+#line 1 "/Users/ahmedmohammed/intelliJWorkspace/EmployeeGson/employee-gson/src/main/java/com/employee/model/Address.java"
 
 
 #line 4

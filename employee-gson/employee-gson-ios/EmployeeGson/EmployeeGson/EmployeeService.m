@@ -41,7 +41,7 @@ __attribute__((unused)) static EmpEmployeeService_2 *new_EmpEmployeeService_2_in
 
 __attribute__((unused)) static EmpEmployeeService_2 *create_EmpEmployeeService_2_init(void);
 
-#line 1 "/Users/ahmedmohammed/intelliJWorkspace/employee-gson/src/main/java/com/employee/gson/EmployeeService.java"
+#line 1 "/Users/ahmedmohammed/intelliJWorkspace/EmployeeGson/employee-gson/src/main/java/com/employee/gson/EmployeeService.java"
 
 
 #line 10
@@ -124,7 +124,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(EmpEmployeeService)
 
 J2OBJC_NAME_MAPPING(EmpEmployeeService, "com.employee.gson", "Emp")
 
-#line 1 "/Users/ahmedmohammed/intelliJWorkspace/employee-gson/src/main/java/com/employee/gson/EmployeeService.java"
+#line 1 "/Users/ahmedmohammed/intelliJWorkspace/EmployeeGson/employee-gson/src/main/java/com/employee/gson/EmployeeService.java"
 
 
 #line 22
@@ -173,7 +173,7 @@ EmpEmployeeService_1 *create_EmpEmployeeService_1_init() {
   J2OBJC_CREATE_IMPL(EmpEmployeeService_1, init)
 }
 
-#line 1 "/Users/ahmedmohammed/intelliJWorkspace/employee-gson/src/main/java/com/employee/gson/EmployeeService.java"
+#line 1 "/Users/ahmedmohammed/intelliJWorkspace/EmployeeGson/employee-gson/src/main/java/com/employee/gson/EmployeeService.java"
 
 
 #line 28
