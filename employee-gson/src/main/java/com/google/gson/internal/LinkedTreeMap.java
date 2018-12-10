@@ -458,7 +458,7 @@ public final class LinkedTreeMap<K, V> extends AbstractMap<K, V> implements Seri
     }
 
     /** Create a regular entry */
-    Node(Node<K, V> parent, K key, @Weak Node<K, V> next, @Weak Node<K, V> prev) {
+    Node(Node<K, V> parent, K key, Node<K, V> next, Node<K, V> prev) {
       this.parent = parent;
       this.key = key;
       this.height = 1;
