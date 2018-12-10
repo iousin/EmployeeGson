@@ -33,3 +33,9 @@ Click on the "Generate Gson" button couple of time and note that the memory usag
 
 There's another button "Generate Gson Autorelease" that wraps the gson generation inside a autoreleasepool block, still doesn't help.
 
+# Regenerate j2objc transpiled code.
+
+Close xcode project. 
+
+Go to employee-gson folder and run ./generateJ2objc.sh this should delete any existing .h and .m files generate new from the java sources. 
+
