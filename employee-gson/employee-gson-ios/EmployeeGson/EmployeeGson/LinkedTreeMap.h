@@ -151,11 +151,11 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonLinkedTreeMap)
 
 @interface GsonLinkedTreeMap_Node : NSObject < JavaUtilMap_Entry > {
  @public
-  GsonLinkedTreeMap_Node *parent_;
+  __unsafe_unretained GsonLinkedTreeMap_Node *parent_;
   GsonLinkedTreeMap_Node *left_;
   GsonLinkedTreeMap_Node *right_;
-  GsonLinkedTreeMap_Node *next_;
-  GsonLinkedTreeMap_Node *prev_;
+  __unsafe_unretained GsonLinkedTreeMap_Node *next_;
+  __unsafe_unretained GsonLinkedTreeMap_Node *prev_;
   id key_;
   id value_;
   jint height_;
@@ -204,11 +204,8 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonLinkedTreeMap)
 
 J2OBJC_EMPTY_STATIC_INIT(GsonLinkedTreeMap_Node)
 
-J2OBJC_FIELD_SETTER(GsonLinkedTreeMap_Node, parent_, GsonLinkedTreeMap_Node *)
 J2OBJC_FIELD_SETTER(GsonLinkedTreeMap_Node, left_, GsonLinkedTreeMap_Node *)
 J2OBJC_FIELD_SETTER(GsonLinkedTreeMap_Node, right_, GsonLinkedTreeMap_Node *)
-J2OBJC_FIELD_SETTER(GsonLinkedTreeMap_Node, next_, GsonLinkedTreeMap_Node *)
-J2OBJC_FIELD_SETTER(GsonLinkedTreeMap_Node, prev_, GsonLinkedTreeMap_Node *)
 J2OBJC_FIELD_SETTER(GsonLinkedTreeMap_Node, key_, id)
 J2OBJC_FIELD_SETTER(GsonLinkedTreeMap_Node, value_, id)
 

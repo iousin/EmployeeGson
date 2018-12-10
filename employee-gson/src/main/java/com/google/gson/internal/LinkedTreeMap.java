@@ -17,6 +17,8 @@
 
 package com.google.gson.internal;
 
+import com.google.j2objc.annotations.Weak;
+
 import java.io.ObjectStreamException;
 import java.io.Serializable;
 import java.util.AbstractMap;
@@ -437,10 +439,13 @@ public final class LinkedTreeMap<K, V> extends AbstractMap<K, V> implements Seri
   }
 
   static final class Node<K, V> implements Entry<K, V> {
+    @Weak
     Node<K, V> parent;
     Node<K, V> left;
     Node<K, V> right;
+    @Weak
     Node<K, V> next;
+    @Weak
     Node<K, V> prev;
     final K key;
     V value;
@@ -453,7 +458,7 @@ public final class LinkedTreeMap<K, V> extends AbstractMap<K, V> implements Seri
     }
 
     /** Create a regular entry */
-    Node(Node<K, V> parent, K key, Node<K, V> next, Node<K, V> prev) {
+    Node(Node<K, V> parent, K key, @Weak Node<K, V> next, @Weak Node<K, V> prev) {
       this.parent = parent;
       this.key = key;
       this.height = 1;
