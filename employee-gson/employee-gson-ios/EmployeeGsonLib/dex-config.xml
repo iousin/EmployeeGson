@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<dexprotector>
+    <verbose>true</verbose>
+    <optimize>true</optimize>
+    <signMode>release</signMode>
+    <certificate>iPhone Developer: iousin@yahoo.co.in (45XDDTAU79)</certificate>
+    <stringEncryption mode="all" />
+    <hideAccess mode="all"/>
+    <ios mode="all"/>
+</dexprotector>

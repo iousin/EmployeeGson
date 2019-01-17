@@ -1,0 +1,9 @@
+**/xcuserdata/
+**/build/
+**/.build/
+**/Curl/
+**/curl*/
+**/docs*/
+**/Carthage/
+**/j2objc*/
+Dependencies*/
