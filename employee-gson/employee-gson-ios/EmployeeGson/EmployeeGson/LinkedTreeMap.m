@@ -135,7 +135,7 @@ J2OBJC_TYPE_LITERAL_HEADER(GsonLinkedTreeMap_LinkedTreeMapIterator)
 
 @interface GsonLinkedTreeMap_EntrySet () {
  @public
-  GsonLinkedTreeMap *this$0_;
+  __unsafe_unretained GsonLinkedTreeMap *this$0_;
 }
 
 @end
@@ -158,7 +158,7 @@ __attribute__((unused)) static GsonLinkedTreeMap_EntrySet_1 *create_GsonLinkedTr
 
 @interface GsonLinkedTreeMap_KeySet () {
  @public
-  GsonLinkedTreeMap *this$0_;
+  __unsafe_unretained GsonLinkedTreeMap *this$0_;
 }
 
 @end
@@ -184,12 +184,12 @@ __attribute__((unused)) static GsonLinkedTreeMap_KeySet_1 *create_GsonLinkedTree
 J2OBJC_INITIALIZED_DEFN(GsonLinkedTreeMap)
 
 
-#line 40
+#line 41
 @implementation GsonLinkedTreeMap
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
 
-#line 60
+#line 61
 - (instancetype)init {
   GsonLinkedTreeMap_init(self);
   return self;
@@ -197,14 +197,14 @@ J2OBJC_IGNORE_DESIGNATED_BEGIN
 J2OBJC_IGNORE_DESIGNATED_END
 
 
-#line 72
+#line 73
 - (instancetype)initWithJavaUtilComparator:(id<JavaUtilComparator>)comparator {
   GsonLinkedTreeMap_initWithJavaUtilComparator_(self, comparator);
   return self;
 }
 
 
-#line 79
+#line 80
 - (jint)size {
   return size_;
 }
@@ -230,13 +230,13 @@ J2OBJC_IGNORE_DESIGNATED_END
 }
 
 
-#line 102
+#line 103
 - (void)clear {
   root_ = nil;
   size_ = 0;
   modCount_++;
   
-#line 108
+#line 109
   GsonLinkedTreeMap_Node *header = self->header_;
   ((GsonLinkedTreeMap_Node *) nil_chk(header))->next_ = header->prev_ = header;
 }
@@ -247,60 +247,60 @@ J2OBJC_IGNORE_DESIGNATED_END
 }
 
 
-#line 123
+#line 124
 - (GsonLinkedTreeMap_Node *)findWithId:(id)key
                            withBoolean:(jboolean)create {
   id<JavaUtilComparator> comparator = self->comparator_;
   GsonLinkedTreeMap_Node *nearest = root_;
   jint comparison = 0;
   
-#line 128
+#line 129
   if (nearest != nil) {
     
-#line 130
-    id<JavaLangComparable> comparableKey =
 #line 131
-    (comparator == GsonLinkedTreeMap_NATURAL_ORDER) ?
+    id<JavaLangComparable> comparableKey =
 #line 132
-    (id<JavaLangComparable>) cast_check(key, JavaLangComparable_class_()) :
+    (comparator == GsonLinkedTreeMap_NATURAL_ORDER) ?
 #line 133
+    (id<JavaLangComparable>) cast_check(key, JavaLangComparable_class_()) :
+#line 134
     nil;
     
-#line 135
+#line 136
     while (true) {
       comparison = (comparableKey != nil) ?
-#line 137
-      [comparableKey compareToWithId:nearest->key_] :
 #line 138
+      [comparableKey compareToWithId:nearest->key_] :
+#line 139
       [((id<JavaUtilComparator>) nil_chk(comparator)) compareWithId:key withId:nearest->key_];
       
-#line 141
+#line 142
       if (comparison == 0) {
         return nearest;
       }
       
-#line 146
+#line 147
       GsonLinkedTreeMap_Node *child = (comparison < 0) ? nearest->left_ : nearest->right_;
       if (child == nil) {
         break;
       }
       
-#line 151
+#line 152
       nearest = child;
     }
   }
   
-#line 156
+#line 157
   if (!create) {
     return nil;
   }
   
-#line 161
+#line 162
   GsonLinkedTreeMap_Node *header = self->header_;
   GsonLinkedTreeMap_Node *created;
   if (nearest == nil) {
     
-#line 165
+#line 166
     if (comparator == GsonLinkedTreeMap_NATURAL_ORDER && !([JavaLangComparable_class_() isInstance:key])) {
       @throw new_JavaLangClassCastException_initWithNSString_(JreStrcat("$$", [[nil_chk(key) java_getClass] getName], @" is not Comparable"));
     }
@@ -309,14 +309,14 @@ J2OBJC_IGNORE_DESIGNATED_END
   }
   else {
     
-#line 171
+#line 172
     created = new_GsonLinkedTreeMap_Node_initWithGsonLinkedTreeMap_Node_withId_withGsonLinkedTreeMap_Node_withGsonLinkedTreeMap_Node_(nearest, key, header, ((GsonLinkedTreeMap_Node *) nil_chk(header))->prev_);
     if (comparison < 0) {
       nearest->left_ = created;
     }
     else {
       
-#line 175
+#line 176
       nearest->right_ = created;
     }
     GsonLinkedTreeMap_rebalanceWithGsonLinkedTreeMap_Node_withBoolean_(self, nearest, true);
@@ -324,27 +324,27 @@ J2OBJC_IGNORE_DESIGNATED_END
   size_++;
   modCount_++;
   
-#line 182
+#line 183
   return created;
 }
 
 
-#line 185
+#line 186
 - (GsonLinkedTreeMap_Node *)findByObjectWithId:(id)key {
   
-#line 187
+#line 188
   @try {
     return key != nil ? [self findWithId:key withBoolean:false] : nil;
   }
   @catch (
-#line 189
+#line 190
   JavaLangClassCastException *e) {
     return nil;
   }
 }
 
 
-#line 203
+#line 204
 - (GsonLinkedTreeMap_Node *)findByEntryWithJavaUtilMap_Entry:(id<JavaUtilMap_Entry>)entry_ {
   GsonLinkedTreeMap_Node *mine = [self findByObjectWithId:[((id<JavaUtilMap_Entry>) nil_chk(entry_)) getKey]];
   jboolean valuesEqual = mine != nil && GsonLinkedTreeMap_equalWithId_withId_(self, mine->value_, [entry_ getValue]);
@@ -357,7 +357,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 }
 
 
-#line 219
+#line 220
 - (void)removeInternalWithGsonLinkedTreeMap_Node:(GsonLinkedTreeMap_Node *)node
                                      withBoolean:(jboolean)unlink {
   if (unlink) {
@@ -365,17 +365,17 @@ J2OBJC_IGNORE_DESIGNATED_END
     ((GsonLinkedTreeMap_Node *) nil_chk(node->next_))->prev_ = node->prev_;
   }
   
-#line 225
+#line 226
   GsonLinkedTreeMap_Node *left = ((GsonLinkedTreeMap_Node *) nil_chk(node))->left_;
   GsonLinkedTreeMap_Node *right = node->right_;
   GsonLinkedTreeMap_Node *originalParent = node->parent_;
   if (left != nil && right != nil) {
     
-#line 239
+#line 240
     GsonLinkedTreeMap_Node *adjacent = (left->height_ > right->height_) ? [left last] : [right first];
     [self removeInternalWithGsonLinkedTreeMap_Node:adjacent withBoolean:false];
     
-#line 242
+#line 243
     jint leftHeight = 0;
     left = node->left_;
     if (left != nil) {
@@ -385,7 +385,7 @@ J2OBJC_IGNORE_DESIGNATED_END
       node->left_ = nil;
     }
     
-#line 251
+#line 252
     jint rightHeight = 0;
     right = node->right_;
     if (right != nil) {
@@ -395,37 +395,37 @@ J2OBJC_IGNORE_DESIGNATED_END
       node->right_ = nil;
     }
     
-#line 260
+#line 261
     adjacent->height_ = JavaLangMath_maxWithInt_withInt_(leftHeight, rightHeight) + 1;
     GsonLinkedTreeMap_replaceInParentWithGsonLinkedTreeMap_Node_withGsonLinkedTreeMap_Node_(self, node, adjacent);
     return;
   }
   else
-#line 263
+#line 264
   if (left != nil) {
     GsonLinkedTreeMap_replaceInParentWithGsonLinkedTreeMap_Node_withGsonLinkedTreeMap_Node_(self, node, left);
     node->left_ = nil;
   }
   else
-#line 266
+#line 267
   if (right != nil) {
     GsonLinkedTreeMap_replaceInParentWithGsonLinkedTreeMap_Node_withGsonLinkedTreeMap_Node_(self, node, right);
     node->right_ = nil;
   }
   else {
     
-#line 270
+#line 271
     GsonLinkedTreeMap_replaceInParentWithGsonLinkedTreeMap_Node_withGsonLinkedTreeMap_Node_(self, node, nil);
   }
   
-#line 273
+#line 274
   GsonLinkedTreeMap_rebalanceWithGsonLinkedTreeMap_Node_withBoolean_(self, originalParent, false);
   size_--;
   modCount_++;
 }
 
 
-#line 278
+#line 279
 - (GsonLinkedTreeMap_Node *)removeInternalByKeyWithId:(id)key {
   GsonLinkedTreeMap_Node *node = [self findByObjectWithId:key];
   if (node != nil) {
@@ -440,26 +440,26 @@ J2OBJC_IGNORE_DESIGNATED_END
 }
 
 
-#line 312
+#line 313
 - (void)rebalanceWithGsonLinkedTreeMap_Node:(GsonLinkedTreeMap_Node *)unbalanced
                                 withBoolean:(jboolean)insert {
   GsonLinkedTreeMap_rebalanceWithGsonLinkedTreeMap_Node_withBoolean_(self, unbalanced, insert);
 }
 
 
-#line 375
+#line 376
 - (void)rotateLeftWithGsonLinkedTreeMap_Node:(GsonLinkedTreeMap_Node *)root {
   GsonLinkedTreeMap_rotateLeftWithGsonLinkedTreeMap_Node_(self, root);
 }
 
 
-#line 403
+#line 404
 - (void)rotateRightWithGsonLinkedTreeMap_Node:(GsonLinkedTreeMap_Node *)root {
   GsonLinkedTreeMap_rotateRightWithGsonLinkedTreeMap_Node_(self, root);
 }
 
 
-#line 431
+#line 432
 - (id<JavaUtilSet>)entrySet {
   GsonLinkedTreeMap_EntrySet *result = entrySet_;
   return result != nil ? result : (entrySet_ = new_GsonLinkedTreeMap_EntrySet_initWithGsonLinkedTreeMap_(self));
@@ -471,7 +471,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 }
 
 
-#line 632
+#line 635
 - (id)writeReplace {
   return GsonLinkedTreeMap_writeReplace(self);
 }
@@ -550,59 +550,59 @@ J2OBJC_IGNORE_DESIGNATED_END
 @end
 
 
-#line 60
+#line 61
 void GsonLinkedTreeMap_init(GsonLinkedTreeMap *self) {
   GsonLinkedTreeMap_initWithJavaUtilComparator_(self, GsonLinkedTreeMap_NATURAL_ORDER);
 }
 
 
-#line 60
+#line 61
 GsonLinkedTreeMap *new_GsonLinkedTreeMap_init() {
   J2OBJC_NEW_IMPL(GsonLinkedTreeMap, init)
 }
 
 
-#line 60
+#line 61
 GsonLinkedTreeMap *create_GsonLinkedTreeMap_init() {
   J2OBJC_CREATE_IMPL(GsonLinkedTreeMap, init)
 }
 
 
-#line 72
+#line 73
 void GsonLinkedTreeMap_initWithJavaUtilComparator_(GsonLinkedTreeMap *self, id<JavaUtilComparator> comparator) {
   JavaUtilAbstractMap_init(self);
   self->size_ =
-#line 50
+#line 51
   0;
   self->modCount_ = 0;
   self->header_ = new_GsonLinkedTreeMap_Node_init();
   
-#line 74
-  self->comparator_ = comparator != nil ?
 #line 75
+  self->comparator_ = comparator != nil ?
+#line 76
   comparator : GsonLinkedTreeMap_NATURAL_ORDER;
 }
 
 
-#line 72
+#line 73
 GsonLinkedTreeMap *new_GsonLinkedTreeMap_initWithJavaUtilComparator_(id<JavaUtilComparator> comparator) {
   J2OBJC_NEW_IMPL(GsonLinkedTreeMap, initWithJavaUtilComparator_, comparator)
 }
 
 
-#line 72
+#line 73
 GsonLinkedTreeMap *create_GsonLinkedTreeMap_initWithJavaUtilComparator_(id<JavaUtilComparator> comparator) {
   J2OBJC_CREATE_IMPL(GsonLinkedTreeMap, initWithJavaUtilComparator_, comparator)
 }
 
 
-#line 209
+#line 210
 jboolean GsonLinkedTreeMap_equalWithId_withId_(GsonLinkedTreeMap *self, id a, id b) {
   return a == b || (a != nil && [a isEqual:b]);
 }
 
 
-#line 286
+#line 287
 void GsonLinkedTreeMap_replaceInParentWithGsonLinkedTreeMap_Node_withGsonLinkedTreeMap_Node_(GsonLinkedTreeMap *self, GsonLinkedTreeMap_Node *node, GsonLinkedTreeMap_Node *replacement) {
   GsonLinkedTreeMap_Node *parent = ((GsonLinkedTreeMap_Node *) nil_chk(node))->parent_;
   node->parent_ = nil;
@@ -610,21 +610,21 @@ void GsonLinkedTreeMap_replaceInParentWithGsonLinkedTreeMap_Node_withGsonLinkedT
     replacement->parent_ = parent;
   }
   
-#line 293
+#line 294
   if (parent != nil) {
     if (parent->left_ == node) {
       parent->left_ = replacement;
     }
     else {
       
-#line 297
-      JreAssert(parent->right_ == node, @"com/google/gson/internal/LinkedTreeMap.java:297 condition failed: assert (parent.right == node);");
+#line 298
+      JreAssert(parent->right_ == node, @"com/google/gson/internal/LinkedTreeMap.java:298 condition failed: assert (parent.right == node);");
       parent->right_ = replacement;
     }
   }
   else {
     
-#line 301
+#line 302
     self->root_ = replacement;
   }
 }
@@ -636,7 +636,7 @@ void GsonLinkedTreeMap_rebalanceWithGsonLinkedTreeMap_Node_withBoolean_(GsonLink
     jint leftHeight = left != nil ? left->height_ : 0;
     jint rightHeight = right != nil ? right->height_ : 0;
     
-#line 319
+#line 320
     jint delta = leftHeight - rightHeight;
     if (delta == -2) {
       GsonLinkedTreeMap_Node *rightLeft = ((GsonLinkedTreeMap_Node *) nil_chk(right))->left_;
@@ -644,15 +644,15 @@ void GsonLinkedTreeMap_rebalanceWithGsonLinkedTreeMap_Node_withBoolean_(GsonLink
       jint rightRightHeight = rightRight != nil ? rightRight->height_ : 0;
       jint rightLeftHeight = rightLeft != nil ? rightLeft->height_ : 0;
       
-#line 326
+#line 327
       jint rightDelta = rightLeftHeight - rightRightHeight;
       if (rightDelta == -1 || (rightDelta == 0 && !insert)) {
         GsonLinkedTreeMap_rotateLeftWithGsonLinkedTreeMap_Node_(self, node);
       }
       else {
         
-#line 330
-        JreAssert(rightDelta == 1, @"com/google/gson/internal/LinkedTreeMap.java:330 condition failed: assert (rightDelta == 1);");
+#line 331
+        JreAssert(rightDelta == 1, @"com/google/gson/internal/LinkedTreeMap.java:331 condition failed: assert (rightDelta == 1);");
         GsonLinkedTreeMap_rotateRightWithGsonLinkedTreeMap_Node_(self, right);
         GsonLinkedTreeMap_rotateLeftWithGsonLinkedTreeMap_Node_(self, node);
       }
@@ -666,15 +666,15 @@ void GsonLinkedTreeMap_rebalanceWithGsonLinkedTreeMap_Node_withBoolean_(GsonLink
       jint leftRightHeight = leftRight != nil ? leftRight->height_ : 0;
       jint leftLeftHeight = leftLeft != nil ? leftLeft->height_ : 0;
       
-#line 344
+#line 345
       jint leftDelta = leftLeftHeight - leftRightHeight;
       if (leftDelta == 1 || (leftDelta == 0 && !insert)) {
         GsonLinkedTreeMap_rotateRightWithGsonLinkedTreeMap_Node_(self, node);
       }
       else {
         
-#line 348
-        JreAssert(leftDelta == -1, @"com/google/gson/internal/LinkedTreeMap.java:348 condition failed: assert (leftDelta == -1);");
+#line 349
+        JreAssert(leftDelta == -1, @"com/google/gson/internal/LinkedTreeMap.java:349 condition failed: assert (leftDelta == -1);");
         GsonLinkedTreeMap_rotateLeftWithGsonLinkedTreeMap_Node_(self, left);
         GsonLinkedTreeMap_rotateRightWithGsonLinkedTreeMap_Node_(self, node);
       }
@@ -689,7 +689,7 @@ void GsonLinkedTreeMap_rebalanceWithGsonLinkedTreeMap_Node_withBoolean_(GsonLink
       }
     }
     else {
-      JreAssert((delta == -1 || delta == 1), @"com/google/gson/internal/LinkedTreeMap.java:363 condition failed: assert (delta == -1 || delta == 1);");
+      JreAssert((delta == -1 || delta == 1), @"com/google/gson/internal/LinkedTreeMap.java:364 condition failed: assert (delta == -1 || delta == 1);");
       node->height_ = JavaLangMath_maxWithInt_withInt_(leftHeight, rightHeight) + 1;
       if (!insert) {
         break;
@@ -699,32 +699,32 @@ void GsonLinkedTreeMap_rebalanceWithGsonLinkedTreeMap_Node_withBoolean_(GsonLink
 }
 
 
-#line 375
+#line 376
 void GsonLinkedTreeMap_rotateLeftWithGsonLinkedTreeMap_Node_(GsonLinkedTreeMap *self, GsonLinkedTreeMap_Node *root) {
   GsonLinkedTreeMap_Node *left = ((GsonLinkedTreeMap_Node *) nil_chk(root))->left_;
   GsonLinkedTreeMap_Node *pivot = root->right_;
   GsonLinkedTreeMap_Node *pivotLeft = ((GsonLinkedTreeMap_Node *) nil_chk(pivot))->left_;
   GsonLinkedTreeMap_Node *pivotRight = pivot->right_;
   
-#line 382
+#line 383
   root->right_ = pivotLeft;
   if (pivotLeft != nil) {
     pivotLeft->parent_ = root;
   }
   
-#line 387
+#line 388
   GsonLinkedTreeMap_replaceInParentWithGsonLinkedTreeMap_Node_withGsonLinkedTreeMap_Node_(self, root, pivot);
   
-#line 390
+#line 391
   pivot->left_ = root;
   root->parent_ = pivot;
   
-#line 394
-  root->height_ = JavaLangMath_maxWithInt_withInt_(left != nil ? left->height_ : 0,
 #line 395
+  root->height_ = JavaLangMath_maxWithInt_withInt_(left != nil ? left->height_ : 0,
+#line 396
   pivotLeft != nil ? pivotLeft->height_ : 0) + 1;
   pivot->height_ = JavaLangMath_maxWithInt_withInt_(root->height_,
-#line 397
+#line 398
   pivotRight != nil ? pivotRight->height_ : 0) + 1;
 }
 
@@ -734,30 +734,30 @@ void GsonLinkedTreeMap_rotateRightWithGsonLinkedTreeMap_Node_(GsonLinkedTreeMap 
   GsonLinkedTreeMap_Node *pivotLeft = ((GsonLinkedTreeMap_Node *) nil_chk(pivot))->left_;
   GsonLinkedTreeMap_Node *pivotRight = pivot->right_;
   
-#line 410
+#line 411
   root->left_ = pivotRight;
   if (pivotRight != nil) {
     pivotRight->parent_ = root;
   }
   
-#line 415
+#line 416
   GsonLinkedTreeMap_replaceInParentWithGsonLinkedTreeMap_Node_withGsonLinkedTreeMap_Node_(self, root, pivot);
   
-#line 418
+#line 419
   pivot->right_ = root;
   root->parent_ = pivot;
   
-#line 422
-  root->height_ = JavaLangMath_maxWithInt_withInt_(right != nil ? right->height_ : 0,
 #line 423
+  root->height_ = JavaLangMath_maxWithInt_withInt_(right != nil ? right->height_ : 0,
+#line 424
   pivotRight != nil ? pivotRight->height_ : 0) + 1;
   pivot->height_ = JavaLangMath_maxWithInt_withInt_(root->height_,
-#line 425
+#line 426
   pivotLeft != nil ? pivotLeft->height_ : 0) + 1;
 }
 
 
-#line 632
+#line 635
 id GsonLinkedTreeMap_writeReplace(GsonLinkedTreeMap *self) {
   return new_JavaUtilLinkedHashMap_initWithJavaUtilMap_(self);
 }
@@ -769,12 +769,12 @@ J2OBJC_NAME_MAPPING(GsonLinkedTreeMap, "com.google.gson.internal", "Gson")
 #line 1 "/Users/ahmedmohammed/intelliJWorkspace/EmployeeGson/employee-gson/src/main/java/com/google/gson/internal/LinkedTreeMap.java"
 
 
-#line 42
+#line 43
 @implementation GsonLinkedTreeMap_1
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
 
-#line 42
+#line 43
 - (instancetype)init {
   GsonLinkedTreeMap_1_init(self);
   return self;
@@ -782,7 +782,7 @@ J2OBJC_IGNORE_DESIGNATED_BEGIN
 J2OBJC_IGNORE_DESIGNATED_END
 
 
-#line 43
+#line 44
 - (jint)compareWithId:(id<JavaLangComparable>)a
                withId:(id<JavaLangComparable>)b {
   return [((id<JavaLangComparable>) nil_chk(a)) compareToWithId:b];
@@ -836,19 +836,19 @@ J2OBJC_IGNORE_DESIGNATED_END
 @end
 
 
-#line 42
+#line 43
 void GsonLinkedTreeMap_1_init(GsonLinkedTreeMap_1 *self) {
   NSObject_init(self);
 }
 
 
-#line 42
+#line 43
 GsonLinkedTreeMap_1 *new_GsonLinkedTreeMap_1_init() {
   J2OBJC_NEW_IMPL(GsonLinkedTreeMap_1, init)
 }
 
 
-#line 42
+#line 43
 GsonLinkedTreeMap_1 *create_GsonLinkedTreeMap_1_init() {
   J2OBJC_CREATE_IMPL(GsonLinkedTreeMap_1, init)
 }
@@ -856,12 +856,12 @@ GsonLinkedTreeMap_1 *create_GsonLinkedTreeMap_1_init() {
 #line 1 "/Users/ahmedmohammed/intelliJWorkspace/EmployeeGson/employee-gson/src/main/java/com/google/gson/internal/LinkedTreeMap.java"
 
 
-#line 441
+#line 442
 @implementation GsonLinkedTreeMap_Node
 
 J2OBJC_IGNORE_DESIGNATED_BEGIN
 
-#line 455
+#line 456
 - (instancetype)init {
   GsonLinkedTreeMap_Node_init(self);
   return self;
@@ -877,7 +877,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 }
 
 
-#line 471
+#line 472
 - (id)getKey {
   return key_;
 }
@@ -894,32 +894,32 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 - (jboolean)isEqual:(id)o {
   
-#line 487
+#line 488
   if ([JavaUtilMap_Entry_class_() isInstance:o]) {
     id<JavaUtilMap_Entry> other = (id<JavaUtilMap_Entry>) cast_check(o, JavaUtilMap_Entry_class_());
     return (key_ == nil ? [((id<JavaUtilMap_Entry>) nil_chk(other)) getKey] == nil : [key_ isEqual:[((id<JavaUtilMap_Entry>) nil_chk(other)) getKey]]) &&
-#line 490
+#line 491
     (value_ == nil ? [other getValue] == nil : [value_ isEqual:[other getValue]]);
   }
   return false;
 }
 
 
-#line 495
+#line 496
 - (NSUInteger)hash {
   return (key_ == nil ? 0 : ((jint) [key_ hash])) ^
-#line 497
+#line 498
   (value_ == nil ? 0 : ((jint) [value_ hash]));
 }
 
 
-#line 500
+#line 501
 - (NSString *)description {
   return JreStrcat("@C@", key_, '=', value_);
 }
 
 
-#line 507
+#line 508
 - (GsonLinkedTreeMap_Node *)first {
   GsonLinkedTreeMap_Node *node = self;
   GsonLinkedTreeMap_Node *child = node->left_;
@@ -931,7 +931,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 }
 
 
-#line 520
+#line 521
 - (GsonLinkedTreeMap_Node *)last {
   GsonLinkedTreeMap_Node *node = self;
   GsonLinkedTreeMap_Node *child = node->right_;
@@ -994,33 +994,33 @@ J2OBJC_IGNORE_DESIGNATED_END
 @end
 
 
-#line 455
+#line 456
 void GsonLinkedTreeMap_Node_init(GsonLinkedTreeMap_Node *self) {
   NSObject_init(self);
   
-#line 456
+#line 457
   self->key_ = nil;
   self->next_ = self->prev_ = self;
 }
 
 
-#line 455
+#line 456
 GsonLinkedTreeMap_Node *new_GsonLinkedTreeMap_Node_init() {
   J2OBJC_NEW_IMPL(GsonLinkedTreeMap_Node, init)
 }
 
 
-#line 455
+#line 456
 GsonLinkedTreeMap_Node *create_GsonLinkedTreeMap_Node_init() {
   J2OBJC_CREATE_IMPL(GsonLinkedTreeMap_Node, init)
 }
 
 
-#line 461
+#line 462
 void GsonLinkedTreeMap_Node_initWithGsonLinkedTreeMap_Node_withId_withGsonLinkedTreeMap_Node_withGsonLinkedTreeMap_Node_(GsonLinkedTreeMap_Node *self, GsonLinkedTreeMap_Node *parent, id key, GsonLinkedTreeMap_Node *next, GsonLinkedTreeMap_Node *prev) {
   NSObject_init(self);
   
-#line 462
+#line 463
   self->parent_ = parent;
   self->key_ = key;
   self->height_ = 1;
@@ -1031,13 +1031,13 @@ void GsonLinkedTreeMap_Node_initWithGsonLinkedTreeMap_Node_withId_withGsonLinked
 }
 
 
-#line 461
+#line 462
 GsonLinkedTreeMap_Node *new_GsonLinkedTreeMap_Node_initWithGsonLinkedTreeMap_Node_withId_withGsonLinkedTreeMap_Node_withGsonLinkedTreeMap_Node_(GsonLinkedTreeMap_Node *parent, id key, GsonLinkedTreeMap_Node *next, GsonLinkedTreeMap_Node *prev) {
   J2OBJC_NEW_IMPL(GsonLinkedTreeMap_Node, initWithGsonLinkedTreeMap_Node_withId_withGsonLinkedTreeMap_Node_withGsonLinkedTreeMap_Node_, parent, key, next, prev)
 }
 
 
-#line 461
+#line 462
 GsonLinkedTreeMap_Node *create_GsonLinkedTreeMap_Node_initWithGsonLinkedTreeMap_Node_withId_withGsonLinkedTreeMap_Node_withGsonLinkedTreeMap_Node_(GsonLinkedTreeMap_Node *parent, id key, GsonLinkedTreeMap_Node *next, GsonLinkedTreeMap_Node *prev) {
   J2OBJC_CREATE_IMPL(GsonLinkedTreeMap_Node, initWithGsonLinkedTreeMap_Node_withId_withGsonLinkedTreeMap_Node_withGsonLinkedTreeMap_Node_, parent, key, next, prev)
 }
@@ -1047,18 +1047,18 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedTreeMap_Node)
 #line 1 "/Users/ahmedmohammed/intelliJWorkspace/EmployeeGson/employee-gson/src/main/java/com/google/gson/internal/LinkedTreeMap.java"
 
 
-#line 531
+#line 532
 @implementation GsonLinkedTreeMap_LinkedTreeMapIterator
 
 
-#line 536
+#line 537
 - (instancetype)initWithGsonLinkedTreeMap:(GsonLinkedTreeMap *)outer$ {
   GsonLinkedTreeMap_LinkedTreeMapIterator_initWithGsonLinkedTreeMap_(self, outer$);
   return self;
 }
 
 
-#line 539
+#line 540
 - (jboolean)hasNext {
   return next_ != this$0_->header_;
 }
@@ -1068,7 +1068,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedTreeMap_Node)
 }
 
 
-#line 555
+#line 556
 - (void)remove {
   if (lastReturned_ == nil) {
     @throw new_JavaLangIllegalStateException_init();
@@ -1111,19 +1111,19 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedTreeMap_Node)
 @end
 
 
-#line 536
+#line 537
 void GsonLinkedTreeMap_LinkedTreeMapIterator_initWithGsonLinkedTreeMap_(GsonLinkedTreeMap_LinkedTreeMapIterator *self, GsonLinkedTreeMap *outer$) {
   self->this$0_ = outer$;
   NSObject_init(self);
   self->next_ =
-#line 532
+#line 533
   ((GsonLinkedTreeMap_Node *) nil_chk(outer$->header_))->next_;
   self->lastReturned_ = nil;
   self->expectedModCount_ = outer$->modCount_;
 }
 
 
-#line 543
+#line 544
 GsonLinkedTreeMap_Node *GsonLinkedTreeMap_LinkedTreeMapIterator_nextNode(GsonLinkedTreeMap_LinkedTreeMapIterator *self) {
   GsonLinkedTreeMap_Node *e = self->next_;
   if (e == self->this$0_->header_) {
@@ -1141,18 +1141,18 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedTreeMap_LinkedTreeMapIterator)
 #line 1 "/Users/ahmedmohammed/intelliJWorkspace/EmployeeGson/employee-gson/src/main/java/com/google/gson/internal/LinkedTreeMap.java"
 
 
-#line 565
+#line 567
 @implementation GsonLinkedTreeMap_EntrySet
 
 
-#line 565
+#line 567
 - (instancetype)initWithGsonLinkedTreeMap:(GsonLinkedTreeMap *)outer$ {
   GsonLinkedTreeMap_EntrySet_initWithGsonLinkedTreeMap_(self, outer$);
   return self;
 }
 
 
-#line 566
+#line 568
 - (jint)size {
   return this$0_->size_;
 }
@@ -1162,7 +1162,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedTreeMap_LinkedTreeMapIterator)
 }
 
 
-#line 578
+#line 580
 - (jboolean)containsWithId:(id)o {
   return [JavaUtilMap_Entry_class_() isInstance:o] && [this$0_ findByEntryWithJavaUtilMap_Entry:(id<JavaUtilMap_Entry>) cast_check(o, JavaUtilMap_Entry_class_())] != nil;
 }
@@ -1172,7 +1172,7 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedTreeMap_LinkedTreeMapIterator)
     return false;
   }
   
-#line 587
+#line 589
   GsonLinkedTreeMap_Node *node = [this$0_ findByEntryWithJavaUtilMap_Entry:(id<JavaUtilMap_Entry>) cast_check(o, JavaUtilMap_Entry_class_())];
   if (node == nil) {
     return false;
@@ -1182,9 +1182,14 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedTreeMap_LinkedTreeMapIterator)
 }
 
 
-#line 595
+#line 597
 - (void)clear {
   [this$0_ clear];
+}
+
+- (void)__javaClone:(GsonLinkedTreeMap_EntrySet *)original {
+  [super __javaClone:original];
+  JreRelease(this$0_);
 }
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id *)stackbuf count:(NSUInteger)len {
@@ -1221,20 +1226,20 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedTreeMap_LinkedTreeMapIterator)
 @end
 
 
-#line 565
+#line 567
 void GsonLinkedTreeMap_EntrySet_initWithGsonLinkedTreeMap_(GsonLinkedTreeMap_EntrySet *self, GsonLinkedTreeMap *outer$) {
   self->this$0_ = outer$;
   JavaUtilAbstractSet_init(self);
 }
 
 
-#line 565
+#line 567
 GsonLinkedTreeMap_EntrySet *new_GsonLinkedTreeMap_EntrySet_initWithGsonLinkedTreeMap_(GsonLinkedTreeMap *outer$) {
   J2OBJC_NEW_IMPL(GsonLinkedTreeMap_EntrySet, initWithGsonLinkedTreeMap_, outer$)
 }
 
 
-#line 565
+#line 567
 GsonLinkedTreeMap_EntrySet *create_GsonLinkedTreeMap_EntrySet_initWithGsonLinkedTreeMap_(GsonLinkedTreeMap *outer$) {
   J2OBJC_CREATE_IMPL(GsonLinkedTreeMap_EntrySet, initWithGsonLinkedTreeMap_, outer$)
 }
@@ -1244,18 +1249,18 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedTreeMap_EntrySet)
 #line 1 "/Users/ahmedmohammed/intelliJWorkspace/EmployeeGson/employee-gson/src/main/java/com/google/gson/internal/LinkedTreeMap.java"
 
 
-#line 571
+#line 573
 @implementation GsonLinkedTreeMap_EntrySet_1
 
 
-#line 571
+#line 573
 - (instancetype)initWithGsonLinkedTreeMap_EntrySet:(GsonLinkedTreeMap_EntrySet *)outer$ {
   GsonLinkedTreeMap_EntrySet_1_initWithGsonLinkedTreeMap_EntrySet_(self, outer$);
   return self;
 }
 
 
-#line 572
+#line 574
 - (id<JavaUtilMap_Entry>)next {
   return GsonLinkedTreeMap_LinkedTreeMapIterator_nextNode(self);
 }
@@ -1279,19 +1284,19 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedTreeMap_EntrySet)
 @end
 
 
-#line 571
+#line 573
 void GsonLinkedTreeMap_EntrySet_1_initWithGsonLinkedTreeMap_EntrySet_(GsonLinkedTreeMap_EntrySet_1 *self, GsonLinkedTreeMap_EntrySet *outer$) {
   GsonLinkedTreeMap_LinkedTreeMapIterator_initWithGsonLinkedTreeMap_(self, outer$->this$0_);
 }
 
 
-#line 571
+#line 573
 GsonLinkedTreeMap_EntrySet_1 *new_GsonLinkedTreeMap_EntrySet_1_initWithGsonLinkedTreeMap_EntrySet_(GsonLinkedTreeMap_EntrySet *outer$) {
   J2OBJC_NEW_IMPL(GsonLinkedTreeMap_EntrySet_1, initWithGsonLinkedTreeMap_EntrySet_, outer$)
 }
 
 
-#line 571
+#line 573
 GsonLinkedTreeMap_EntrySet_1 *create_GsonLinkedTreeMap_EntrySet_1_initWithGsonLinkedTreeMap_EntrySet_(GsonLinkedTreeMap_EntrySet *outer$) {
   J2OBJC_CREATE_IMPL(GsonLinkedTreeMap_EntrySet_1, initWithGsonLinkedTreeMap_EntrySet_, outer$)
 }
@@ -1299,18 +1304,18 @@ GsonLinkedTreeMap_EntrySet_1 *create_GsonLinkedTreeMap_EntrySet_1_initWithGsonLi
 #line 1 "/Users/ahmedmohammed/intelliJWorkspace/EmployeeGson/employee-gson/src/main/java/com/google/gson/internal/LinkedTreeMap.java"
 
 
-#line 600
+#line 603
 @implementation GsonLinkedTreeMap_KeySet
 
 
-#line 600
+#line 603
 - (instancetype)initWithGsonLinkedTreeMap:(GsonLinkedTreeMap *)outer$ {
   GsonLinkedTreeMap_KeySet_initWithGsonLinkedTreeMap_(self, outer$);
   return self;
 }
 
 
-#line 601
+#line 604
 - (jint)size {
   return this$0_->size_;
 }
@@ -1320,7 +1325,7 @@ GsonLinkedTreeMap_EntrySet_1 *create_GsonLinkedTreeMap_EntrySet_1_initWithGsonLi
 }
 
 
-#line 613
+#line 616
 - (jboolean)containsWithId:(id)o {
   return [this$0_ containsKeyWithId:o];
 }
@@ -1331,6 +1336,11 @@ GsonLinkedTreeMap_EntrySet_1 *create_GsonLinkedTreeMap_EntrySet_1_initWithGsonLi
 
 - (void)clear {
   [this$0_ clear];
+}
+
+- (void)__javaClone:(GsonLinkedTreeMap_KeySet *)original {
+  [super __javaClone:original];
+  JreRelease(this$0_);
 }
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id *)stackbuf count:(NSUInteger)len {
@@ -1367,20 +1377,20 @@ GsonLinkedTreeMap_EntrySet_1 *create_GsonLinkedTreeMap_EntrySet_1_initWithGsonLi
 @end
 
 
-#line 600
+#line 603
 void GsonLinkedTreeMap_KeySet_initWithGsonLinkedTreeMap_(GsonLinkedTreeMap_KeySet *self, GsonLinkedTreeMap *outer$) {
   self->this$0_ = outer$;
   JavaUtilAbstractSet_init(self);
 }
 
 
-#line 600
+#line 603
 GsonLinkedTreeMap_KeySet *new_GsonLinkedTreeMap_KeySet_initWithGsonLinkedTreeMap_(GsonLinkedTreeMap *outer$) {
   J2OBJC_NEW_IMPL(GsonLinkedTreeMap_KeySet, initWithGsonLinkedTreeMap_, outer$)
 }
 
 
-#line 600
+#line 603
 GsonLinkedTreeMap_KeySet *create_GsonLinkedTreeMap_KeySet_initWithGsonLinkedTreeMap_(GsonLinkedTreeMap *outer$) {
   J2OBJC_CREATE_IMPL(GsonLinkedTreeMap_KeySet, initWithGsonLinkedTreeMap_, outer$)
 }
@@ -1390,18 +1400,18 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedTreeMap_KeySet)
 #line 1 "/Users/ahmedmohammed/intelliJWorkspace/EmployeeGson/employee-gson/src/main/java/com/google/gson/internal/LinkedTreeMap.java"
 
 
-#line 606
+#line 609
 @implementation GsonLinkedTreeMap_KeySet_1
 
 
-#line 606
+#line 609
 - (instancetype)initWithGsonLinkedTreeMap_KeySet:(GsonLinkedTreeMap_KeySet *)outer$ {
   GsonLinkedTreeMap_KeySet_1_initWithGsonLinkedTreeMap_KeySet_(self, outer$);
   return self;
 }
 
 
-#line 607
+#line 610
 - (id)next {
   return ((GsonLinkedTreeMap_Node *) nil_chk(GsonLinkedTreeMap_LinkedTreeMapIterator_nextNode(self)))->key_;
 }
@@ -1425,19 +1435,19 @@ J2OBJC_CLASS_TYPE_LITERAL_SOURCE(GsonLinkedTreeMap_KeySet)
 @end
 
 
-#line 606
+#line 609
 void GsonLinkedTreeMap_KeySet_1_initWithGsonLinkedTreeMap_KeySet_(GsonLinkedTreeMap_KeySet_1 *self, GsonLinkedTreeMap_KeySet *outer$) {
   GsonLinkedTreeMap_LinkedTreeMapIterator_initWithGsonLinkedTreeMap_(self, outer$->this$0_);
 }
 
 
-#line 606
+#line 609
 GsonLinkedTreeMap_KeySet_1 *new_GsonLinkedTreeMap_KeySet_1_initWithGsonLinkedTreeMap_KeySet_(GsonLinkedTreeMap_KeySet *outer$) {
   J2OBJC_NEW_IMPL(GsonLinkedTreeMap_KeySet_1, initWithGsonLinkedTreeMap_KeySet_, outer$)
 }
 
 
-#line 606
+#line 609
 GsonLinkedTreeMap_KeySet_1 *create_GsonLinkedTreeMap_KeySet_1_initWithGsonLinkedTreeMap_KeySet_(GsonLinkedTreeMap_KeySet *outer$) {
   J2OBJC_CREATE_IMPL(GsonLinkedTreeMap_KeySet_1, initWithGsonLinkedTreeMap_KeySet_, outer$)
 }
