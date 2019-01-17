@@ -15,9 +15,9 @@ J2objc: 2.2
 
 # Running project
 
-Project is based on Xcode 9.4.1 
+Project is based on Xcode 10.1
 
-Goto employee-gson-ios -> EmployeeGson and open the xcode project. 
+Goto employee-gson-ios -> EmployeeGsonLib and open the xcode project. 
 
 Set "User defined settings" J2OBJC_HOME to the j2objc 2.2 home folder. 
 
@@ -39,3 +39,8 @@ Close xcode project.
 
 Go to employee-gson folder and run ./generateJ2objc.sh this should delete any existing .h and .m files generate new from the java sources. 
 
+# Makefile to build for phone and simulator
+
+employee-gson-ios -> EmployeeGsonLib
+
+From the above folder one can run various make targets to build for phone and simulator and also to obfuscate it. 
