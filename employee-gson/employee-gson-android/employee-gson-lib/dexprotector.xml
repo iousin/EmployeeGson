@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<dexprotector>
+    <aar autoInit="on" desugar="on"/>
+    <verbose>true</verbose>
+    <optimize>true</optimize>
+    <signMode>release</signMode>
+    <stringEncryption mode="all" />
+    <hideAccess mode="all"/>
+</dexprotector>
